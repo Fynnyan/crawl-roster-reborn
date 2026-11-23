@@ -6,26 +6,22 @@ Provide a easy to use app and discord integration that doesn't need a complex tu
 
 Each action clearly describes what it does and provides transparent feedback.
 
-
 == Scope
 
-Insert _<Context diagram>_ or _<Context table>_ here.
+The application should be a companion app that enables the organization and management of events and the groups within an event for role-playing earnings.
 
-Optional: add table with explanations of interfaces:
+It concerns itself with:
 
-[cols="1,5" options="header"]
-|===
-| Interface Name | Meaning/Explanation
-| _<IF-1>_       |_<Meaning-1>_
-| _<IF-2>_       |_<Meaning-2>_
-|                |
-|===
+* Providing support with creating and managing events for admins / organizers
+* Providing support with creating and managing groups/tables within an event for GMs/DMs
+* Allows users to keep a simple profile that aides with the coordination of groups
+* Allow the users to interact with the system via the bot in the discord client without needing to change the application.
 
 == Constraints
 
 === Organizational Constraints
 
-*
+* The DGB is loosely organized and there are some core organizers but the community itself is loosely linked through the shared interest. Community consensus is important.
 
 === Technical Constraints
 

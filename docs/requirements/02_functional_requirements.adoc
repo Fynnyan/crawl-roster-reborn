@@ -1,40 +1,89 @@
 == Functional Requirements
 
-EPIC 1: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+[discrete]
+=== Guest Users
 
-FEATURE 1.1: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+1. There are no guest users. All actions require a logged user. Actions via bot always imply a logged user else they would have no aceess to the server
 
-STORY 1.1.1: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+[discrete]
+=== Login
 
-STORY 1.1.x.:As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+1. Users can log in with Discord's OAuth2 in the Web GUI
+2. The first login creates a player from the Discord ID, handle and avatar. Later logins reuse that player.
+3. At login, the system reads the user's Discord guilds. For each linked guild the user belongs to, it records their membership and whether they are an admin there.
 
-EPIC 2: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+[discrete]
+=== Player profile
 
-FEATURE 2.1: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+1. Players can edit their profile
+2. A profile consist of the following data
+    * display name
+    * spoken languages - none or multiple selections possible
+    * player experience / level
+3. The profile supports the following languages:
+    * Swiss German
+    * German
+    * English
+    * French
+    * Italian
+    * Romansh
+4. The profile supports the following experience labels:
+    * Beginner
+    * Intermediate
+    * GM
 
-STORY 2.1.1: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+[discrete]
+=== Guild management
 
-STORY 2.1.2: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+1. When the bot is added to a Discord guild, that guild is linked to the server.
+2. Guild renames in Discord are synced to the linked guild.
+3. Users can see the linked guilds and switch between them in the web app.
+4. Guild statistics can be viewed for a date range: events, tables hosted, seats filled and distinct players. Statistics are also given per DM.
 
-FEATURE 2.2: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+[discrete]
+=== Event Management
 
-STORY 2.2.1: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+1. Event creation, editing, closing and cancelling are restricted to admins of that guild.
+2. Each guild has at most one event per date.
+3. Anyone can view a guild's calendar filtered by date range, and the details of a single event.
+4. A Event is automatically closed after the event date has passed
 
-STORY 2.2.2: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+=== Tables (DM hosting)
 
-EPIC 3: As _<role>_ I want _<functionality>_ so that _<advantage>_.
-_<optional: Link to models>_.
+1. Adminis can decide if all players can host a table or only GM marked roles
+2. A logged-in player can host one table per event as DM, and can edit or cancel it.
+3. A table has these fields:
+    * adventure title
+    * description
+    * game system
+    * language
+    * player limit
+    * level range
+    * audience (Beginner or Regular)
+4. A player cannot host a table and also be registered as a player in the same event.
+
+[discrete]
+=== Player registration and seating
+
+1. A player can register for an event, optionally choosing a DM's table, and can cancel their own registration.
+2. A player cannot register twice for the same event.
+3. A player cannot join a full table.
+4. Players can switch tables, or leave a table and stay registered as unseated.
+5. A DM can invite an unseated player to their table or remove a seated player from it.
+6. Users can only create, change or cancel their own registrations. The exceptions are DM invites and removals.
+7. The event view shows each table's occupancy, its seated players and the unseated players.
+
+[discrete]
+=== Discord bot integration
+
+1. The bot is only active when a bot token is configured.
+2. The application manages only one bot, the bot can be part of multiple Discord servers
+3. Each event gets a Discord text channel under an "Organisation" category, with a pinned summary message.
+4. The event channel is deleted when the event is canceled or closed.
+5. Each table gets a public thread with its own pinned message.
+6. These messages are updated automatically when events, tables or registrations change.
+7. Messages are rendered from templates and limited to 2000 characters.
+8. Messages carry buttons: Sign Up, Cancel, Join Beginner Table, Join Table and Leave Table. Button clicks register or unregister the player and get an ephemeral reply.
 
 == Supporting Models
 
