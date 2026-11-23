@@ -1,0 +1,46 @@
+// configure settings
+include::config.adoc[]
+
+= Crawl Roster Arc42 documentation
+
+// horizontal line
+***
+
+// numbering from here on
+:numbered:
+
+<<<
+include::01_introduction_and_goals.adoc[]
+
+<<<
+include::02_architecture_constraints.adoc[]
+
+<<<
+include::03_context_and_scope.adoc[]
+
+<<<
+include::04_solution_strategy.adoc[]
+
+<<<
+include::05_building_block_view.adoc[]
+
+<<<
+include::06_runtime_view.adoc[]
+
+<<<
+include::07_deployment_view.adoc[]
+
+<<<
+include::08_cross_cutting_concepts.adoc[]
+
+<<<
+include::09_architecture_decisions.adoc[]
+
+<<<
+include::10_quality_requirements.adoc[]
+
+<<<
+include::11_technical_risks.adoc[]
+
+<<<
+include::12_glossary.adoc[]

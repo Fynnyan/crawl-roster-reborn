@@ -1,0 +1,107 @@
+== Building Block View
+
+=== Whitebox Overall System
+
+[source,plantuml]
+--
+@startuml
+package Discord {
+    [Discord Bot] as bot
+    [Discord Client] as dc
+    [Discord IDP] as idp
+}
+package Application {
+    [Backend] as be
+    [Web frontend] as web
+    database "App DB" as db 
+}
+actor User as usr
+
+usr --> web 
+usr --> dc
+web --> be
+web --> idp : Auth-Code Flow 
+bot <-l-> be
+be --> idp : Ressource Server
+be --> db
+@enduml
+--
+
+[width="100%",cols="10%,90%",options="header"]
+|===
+|Component |Description
+|Backend |Core of the application providing a REST API and integrating and manages the discord bot
+|Web frontend |WEB GUI allowing to manage the personal profile and organizing the events without using the bot
+|App DB |Application database
+|Discord Bot |Custom Discord Bot with dedicated commands and integrations to schedule, manage and setup events. The bot allows users to interact with the application within the Discord client
+|Discord IDP |Discord as IDP for the application
+|Discord Client |Web/Native client that users use to interface with the organization and the bot
+|===
+
+Here you describe the decomposition of the overall system using the
+following white box template. It contains
+
+* an overview diagram
+* a motivation for the decomposition
+* black box descriptions of the contained building blocks. For these we
+offer you alternatives:
+** use _one_ table for a short and pragmatic overview of all contained
+building blocks and their interfaces
+** use a list of black box descriptions of the building blocks
+according to the black box template (see below). Depending on your
+choice of tool this list could be sub-chapters (in text files),
+sub-pages (in a Wiki) or nested elements (in a modeling tool).
+
+==== Backend
+
+[width="100%",cols="15%,85%",]
+|===
+|Purpose/Responsibility |
+|Interface(s) |_Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics._
+|Quality-/Performance |_Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, …_
+|===
+
+==== Web frontend
+
+[width="100%",cols="15%,85%",]
+|===
+|Purpose/Responsibility |
+|Interface(s) |_Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics._
+|Quality-/Performance |_Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, …_
+|===
+
+==== App DB
+
+[width="100%",cols="15%,85%",]
+|===
+|Purpose/Responsibility |
+|Interface(s) |_Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics._
+|Quality-/Performance |_Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, …_
+|===
+
+==== Discord Bot
+
+[width="100%",cols="15%,85%",]
+|===
+|Purpose/Responsibility |
+|Interface(s) |_Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics._
+|Quality-/Performance |_Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, …_
+|===
+
+==== Discord IDP
+
+[width="100%",cols="15%,85%",]
+|===
+|Purpose/Responsibility |
+|Interface(s) |_Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics._
+|Quality-/Performance |_Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, …_
+|===
+
+==== Discord Client
+
+[width="100%",cols="15%,85%",]
+|===
+|Purpose/Responsibility |
+|Interface(s) |_Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics._
+|Quality-/Performance |_Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, …_
+|===
