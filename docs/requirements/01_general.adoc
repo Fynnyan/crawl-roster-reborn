@@ -1,0 +1,33 @@
+== Goals
+
+=== Usability
+
+Provide a easy to use app and discord integration that doesn't need a complex tutorial for it's users
+
+Each action clearly describes what it does and provides transparent feedback.
+
+
+== Scope
+
+Insert _<Context diagram>_ or _<Context table>_ here.
+
+Optional: add table with explanations of interfaces:
+
+[cols="1,5" options="header"]
+|===
+| Interface Name | Meaning/Explanation
+| _<IF-1>_       |_<Meaning-1>_
+| _<IF-2>_       |_<Meaning-2>_
+|                |
+|===
+
+== Constraints
+
+=== Organizational Constraints
+
+*
+
+=== Technical Constraints
+
+* Discord is used to organize events, so the Discord integration is essential.
+* Users should not need to create a dedicated account for the app, so Discord is used as IDP.

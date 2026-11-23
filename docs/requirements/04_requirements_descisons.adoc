@@ -1,0 +1,14 @@
+== Requirement Decisions
+
+In this section are the RDR - Requirement Decisions Records documented
+
+Decisions that where made during the process of creating, managing and processing requirements.
+
+=== RDR-1 - documentation
+
+Documentation of the requirements with the rec42 framework is too grand and would result in an overblown document.
+Also the rec42 has a string opinion on agile development within a scrum team and is unfortunate, at the moment,
+not that well documented. There are some guidelines in the provided templates but not in the same scope as arc42 provides.
+
+We use a simpler structure that is better suited for the project.
+The structure is inspired by the rec42 framework but doesn't follow it.

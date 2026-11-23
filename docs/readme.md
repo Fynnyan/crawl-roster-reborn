@@ -1,6 +1,14 @@
+# Project Documentation
 
 In this `docs` module we describe the requirements and architecture of the application.
-For this we use/follow the [req42](https://req42.de/en/req42-at-a-glance) and [arc42](https://docs.arc42.org/home/) frameworks
+For this we use/follow the [arc42](https://docs.arc42.org/home/) framework for the architectural documentation and 
+picked parts, were inspired by the [req42](https://req42.de/en/req42-at-a-glance) framework for the documentation of the requirements
 
-* `arc42` - provides the software architecture documentation and overview
-* `req42` - provides the requirements documentation
+Structure:
+
+* `arc42` - software architecture documentation and overview
+* `requirements` - documentation of the requirements
+* `common` - common asciidoc elements that are used by both documentations  
+
+
+## Decisions

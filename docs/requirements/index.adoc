@@ -1,0 +1,25 @@
+// configure settings
+include::config.adoc[]
+
+= Crawl Roster requirements documentation
+
+// horizontal line
+'''
+
+// numbering from here on
+:numbered:
+
+<<<
+include::01_general.adoc[]
+
+<<<
+include::02_functional_requirements.adoc[]
+
+<<<
+include::03_quality-requirements.adoc[]
+
+<<<
+include::04_requirements_descisons.adoc[]
+
+<<<
+include::05_glossary.adoc[]

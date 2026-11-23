@@ -4,7 +4,7 @@ include::config.adoc[]
 = Crawl Roster Arc42 documentation
 
 // horizontal line
-***
+'''
 
 // numbering from here on
 :numbered:

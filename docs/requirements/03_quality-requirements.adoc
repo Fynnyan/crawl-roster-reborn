@@ -32,10 +32,3 @@ _<Link to functional requirements or scope for this quality >_
 
 _< quality requirement or scenario 3>_ :
 _<Link to functional requirements or scope for this quality >_
-
- .
- .
- .
-
-_< quality requirement or scenario n>_ :
-_<Link to functional requirements or scope for this quality >_
