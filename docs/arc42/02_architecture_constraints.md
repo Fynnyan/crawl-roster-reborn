@@ -1,47 +1,10 @@
-# Architecture Constraints {#section-architecture-constraints}
+# Architecture Constraints 
 
-:::::::::::: sidebar
-::: title
-:::
 
-:::: formalpara
-::: title
-Contents
-:::
-
-Any requirement that constraints software architects in their freedom of
-design and implementation decisions or decision about the development
-process. These constraints sometimes go beyond individual systems and
-are valid for whole organizations and companies.
-::::
-
-:::: formalpara
-::: title
-Motivation
-:::
-
-Architects should know exactly where they are free in their design
-decisions and where they must adhere to constraints. Constraints must
-always be dealt with; they may be negotiable, though.
-::::
-
-:::: formalpara
-::: title
-Form
-:::
-
-Simple tables of constraints with explanations. If needed you can
-subdivide them into technical constraints, organizational and political
-constraints and conventions (e.g. programming or versioning guidelines,
-documentation or naming conventions)
-::::
-
-:::: formalpara
-::: title
-Further Information
-:::
-
-See [Architecture Constraints](https://docs.arc42.org/section-2/) in the
-arc42 documentation.
-::::
-::::::::::::
+| Type           | Constraint                                                                                                         |
+|----------------|--------------------------------------------------------------------------------------------------------------------|
+| Technical      | Whenever possible a strongly type programming language should be used to prevent errors and improve reliability.   |
+| Technical      | The WEB GUI uses Node, pnpn, Typescrip, React.                                                                     |
+| Technical      | A UI component library is used for efficient development of the WEB GUI.                                           |
+| Organizational | The Discord integration is given and can not be changed as the DGB uses this plattform to organize.                |
+| Organizational | Discord as IDP is used as the members of the DGB already use the plattform and the app should not manage accounts. |

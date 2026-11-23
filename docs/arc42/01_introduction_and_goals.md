@@ -1,238 +1,52 @@
-# Introduction and Goals {#section-introduction-and-goals}
+# Introduction and Goals
 
-:::: sidebar
-::: title
-:::
+This document describes the Craw-Roster application, 
+a plattform for the Dragons Guild Bern (DGB) to manage and organize their events.     
 
-Describes the relevant requirements and the driving forces that software
-architects and development team must consider. These include
+The Craw-Roster is a companion app to the discord server the DGB uses. 
+* It provides an integration and plattform to create and manage events and the player-groups per event.
+* Allows the users to manage a minimal profile that supports the even and group organization.
+* Uses a custom Discord-Bot for a seamless integration in the Discord client to proved the features without the need to switch to a web GUI.    
 
-- underlying business goals,
+## Requirements Overview 
 
-- essential features,
+The Craw-Roster integrates with Discord via a Discord-Bot and provides the following functionality with the bot and the web GUI
 
-- essential functional requirements,
+* Management of a guild / a Discord server - the organization specific permissions and roles that are needed for the app.
+* Management of the events, the tables/groups per event.
+* Synchronization between the app and the Discord Server. Events and groups per are available in the app and in Discord as event-channels where users organize the groups.
+* Users don't need a dedicated account for the app, Discord is used as IDP and the application integrates via OIDC.
 
-- quality goals for the architecture and
+## Quality Goals
 
-- relevant stakeholders and their expectations
-::::
+### Functional Suitability / Flexibility
 
-## Requirements Overview {#_requirements_overview}
+The app should support the DGB (and possible other organizations) with managing and organizing the events.
+For this the plattform needs to provide the required functionality and behavior as expected from it's users.
 
-:::::::::::: sidebar
-::: title
-:::
+Interactions should be clear for the users, behavior "obvious" as the users have different levels of know-how regarding
+the plattform, the organization and technology
 
-:::: formalpara
-::: title
-Contents
-:::
+The plattform should proved the users, admins and organizers a certain amount of flexibility 
+as last minute changes are a common occurrence and the plattform should not hinder the process.
 
-Short description of the functional requirements, driving forces,
-extract (or abstract) of requirements. Link to (hopefully existing)
-requirements documents (with version number and information where to
-find it).
-::::
+### Maintainability
 
-:::: formalpara
-::: title
-Motivation
-:::
+The application is build and maintained by a small group of devs in their spare time.
+There is a small budget in time and material so the plattform should be easy to maintain,
+avoid complexity when possible and not use "obscure" technology
 
-From the point of view of the end users a system is created or modified
-to improve support of a business activity and/or improve the quality.
-::::
+### Reliability
 
-:::: formalpara
-::: title
-Form
-:::
+The application is build and maintained by a small group of devs in their spare time.
+So the app should observer a zero to low failure rate, provide fault tolerance when discord integration is not available 
+and require zero to low dev support - is best effort.
 
-Short textual description, probably in tabular use-case format. If
-requirements documents exist this overview should refer to these
-documents.
-::::
+## Stakeholders
 
-Keep these excerpts as short as possible. Balance readability of this
-document with potential redundancy w.r.t to requirements documents.
-
-:::: formalpara
-::: title
-Further Information
-:::
-
-See [Introduction and Goals](https://docs.arc42.org/section-1/) in the
-arc42 documentation.
-::::
-::::::::::::
-
-## Quality Goals {#_quality_goals}
-
-:::::::::: sidebar
-::: title
-:::
-
-:::: formalpara
-::: title
-Contents
-:::
-
-The top three (max five) quality goals for the architecture whose
-fulfillment is of highest importance to the major stakeholders. We
-really mean quality goals for the architecture. Don't confuse them with
-project goals. They are not necessarily identical.
-::::
-
-Consider this overview of potential topics (based upon the [ISO
-25010:2023](https://www.iso.org/obp/ui/#iso:std:iso-iec:25010:ed-2:v1:en)
-standard):
-
-![Categories of Quality
-Requirements](images/01_2_iso-25010-topics-EN-2023.drawio.png)
-
-For a more extensive (and open) collection of qualities, definitions and
-example requirements, see the [Q42 quality
-model](https://quality.arc42.org).
-
-:::: formalpara
-::: title
-Motivation
-:::
-
-You should know the quality goals of your most important stakeholders,
-since they will influence fundamental architectural decisions. Make sure
-to be very concrete about these qualities, avoid buzzwords. If you as an
-architect do not know how the quality of your work will be judged...​
-::::
-
-:::: formalpara
-::: title
-Form
-:::
-
-A table with quality goals and concrete scenarios, ordered by priorities
-::::
-::::::::::
-
-## Stakeholders {#_stakeholders}
-
-:::::::::::: sidebar
-::: title
-:::
-
-:::: formalpara
-::: title
-Contents
-:::
-
-Explicit overview of stakeholders of the system, i.e. all person, roles
-or organizations that
-::::
-
-- should know the architecture
-
-- have to be convinced of the architecture
-
-- have to work with the architecture or with code
-
-- need the documentation of the architecture for their work
-
-- have to come up with decisions about the system or its development
-
-:::: formalpara
-::: title
-Motivation
-:::
-
-You should know all parties involved in development of the system or
-affected by the system. Otherwise, you may get nasty surprises later in
-the development process. These stakeholders determine the extent and the
-level of detail of your work and its results.
-::::
-
-:::: formalpara
-::: title
-Form
-:::
-
-Table with role names, person names, and their expectations with respect
-to the architecture documentation (!). Do not repeat stakeholders\'
-functional and quality requirements. Identify their documentation needs
-here.
-::::
-
-:::: formalpara
-::: title
-Example
-:::
-
-The following stakeholder roles recur across many projects. Use it as a
-starting point, then adapt the roles, names and expectations to your
-actual project. Not every project has all of these roles, and some will
-have additional ones.
-::::
-
-+--------------+---------------------------+---------------------------+
-| Role/Name    | Contact                   | Expectations              |
-+==============+===========================+===========================+
-| Product      | Product Management        | Prioritizes features by   |
-| Owner        |                           | business value; needs     |
-|              |                           | Section 1 (Requirements   |
-|              |                           | Overview, Quality Goals)  |
-|              |                           | kept aligned with product |
-|              |                           | strategy                  |
-+--------------+---------------------------+---------------------------+
-| End Users /  | represented via UX        | Need the system to be     |
-| Customers    | research, support tickets | usable, reliable and      |
-|              |                           | fast; drive quality goals |
-|              |                           | such as performance and   |
-|              |                           | usability                 |
-+--------------+---------------------------+---------------------------+
-| Software     | Architecture Team         | Own and maintain this     |
-| Architect(s) |                           | documentation; use it to  |
-|              |                           | justify and communicate   |
-|              |                           | technical decisions       |
-+--------------+---------------------------+---------------------------+
-| Development  | Engineering Team          | Need clear building       |
-| Team         |                           | blocks (Section 5) and    |
-|              |                           | runtime scenarios         |
-|              |                           | (Section 6) to implement  |
-|              |                           | correctly                 |
-+--------------+---------------------------+---------------------------+
-| Operations / | Ops Team                  | Need the deployment view  |
-| SRE          |                           | (Section 7) and           |
-|              |                           | cross-cutting concepts    |
-|              |                           | (Section 8, e.g.          |
-|              |                           | monitoring, logging) to   |
-|              |                           | run the system reliably   |
-+--------------+---------------------------+---------------------------+
-| Security     | Security Team             | Review the architecture   |
-| Officer /    |                           | against risks (Section    |
-| InfoSec      |                           | 11) and quality           |
-|              |                           | requirements (Section     |
-|              |                           | 10); need evidence that   |
-|              |                           | security constraints are  |
-|              |                           | addressed                 |
-+--------------+---------------------------+---------------------------+
-| Compliance / | Legal/Compliance Team     | Need evidence that        |
-| Legal        |                           | regulatory constraints    |
-|              |                           | (Section 2) are           |
-|              |                           | respected, e.g. data      |
-|              |                           | protection, licensing     |
-+--------------+---------------------------+---------------------------+
-| Project      | Steering Committee        | Need confidence that      |
-| Sponsor /    |                           | architecture decisions    |
-| Management   |                           | (Section 9) support       |
-|              |                           | budget, timeline and      |
-|              |                           | strategic goals           |
-+--------------+---------------------------+---------------------------+
-::::::::::::
-
-+--------------+---------------------------+---------------------------+
-| Role/Name    | Contact                   | Expectations              |
-+==============+===========================+===========================+
-| *\<Role-1\>* | *\<Contact-1\>*           | *\<Expectation-1\>*       |
-+--------------+---------------------------+---------------------------+
-| *\<Role-2\>* | *\<Contact-2\>*           | *\<Expectation-2\>*       |
-+--------------+---------------------------+---------------------------+
+| Role                    | Description                                                          | Expectations                                                                                                                |
+|-------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Maintainers             | Group of Devs that develop and maintain the app                      | Focus on a certain Simplicity, Maintainabilty, Relayability as the work on the app is done in their spare time.             |
+| DGB Admins / Organizers | Main-Organizers, Admins that manage the DGB Discord server and group | A functional plattform that doesn't need mutch oversight, can be extendet to fit the organizations need and is easy to use. |
+| Game Masters            | Organizer for a table, a group.                                      | A simple and functional way to create and manage tables per event. Easy group management and overview of the events         |
+| User / Players          | New or regulars that come and play in events as part of a group.     | A simple and functional way to see the events, join/subscribe to an event and a group for an event.                         |
