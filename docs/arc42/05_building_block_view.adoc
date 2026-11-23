@@ -2,9 +2,10 @@
 
 === Whitebox Overall System
 
-[source,plantuml]
---
-@startuml
+[plantuml]
+----
+skinparam packageStyle rectangle
+
 package Discord {
     [Discord Bot] as bot
     [Discord Client] as dc
@@ -13,19 +14,18 @@ package Discord {
 package Application {
     [Backend] as be
     [Web frontend] as web
-    database "App DB" as db 
+    database "App DB" as db
 }
 actor User as usr
 
-usr --> web 
+usr --> web
 usr --> dc
 web --> be
-web --> idp : Auth-Code Flow 
-bot <-l-> be
+web --> idp : Auth-Code Flow
+bot <--> be
 be --> idp : Ressource Server
 be --> db
-@enduml
---
+----
 
 [width="100%",cols="10%,90%",options="header"]
 |===
