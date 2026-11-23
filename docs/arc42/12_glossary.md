@@ -1,57 +1,12 @@
-# Glossary {#section-glossary}
+# Glossary
 
-:::::::::::: sidebar
-::: title
-:::
-
-:::: formalpara
-::: title
-Contents
-:::
-
-The most important domain and technical terms that your stakeholders use
-when discussing the system.
-::::
-
-You can also see the glossary as source for translations if you work in
-multi-language teams.
-
-:::: formalpara
-::: title
-Motivation
-:::
-
-You should clearly define your terms, so that all stakeholders
-::::
-
-- have an identical understanding of these terms
-
-- do not use synonyms and homonyms
-
-:::: formalpara
-::: title
-Form
-:::
-
-A table with columns \<Term\> and \<Definition\>.
-::::
-
-Potentially more columns in case you need translations.
-
-:::: formalpara
-::: title
-Further Information
-:::
-
-See [Glossary](https://docs.arc42.org/section-12/) in the arc42
-documentation.
-::::
-::::::::::::
-
-+----------------------+-----------------------------------------------+
-| Term                 | Definition                                    |
-+======================+===============================================+
-| *\<Term-1\>*         | *\<definition-1\>*                            |
-+----------------------+-----------------------------------------------+
-| *\<Term-2\>*         | *\<definition-2\>*                            |
-+----------------------+-----------------------------------------------+
+| Term      | Definition                                                                                                                                                                                                |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DGB       | Short form of the name Dragons Guild Bern - the loose organization that organizes pnP / dnd events in Bern                                                                                                |
+| TTRPG     | tabletop role-playing game - a game played usually offline at a table with a group of people where a GM plays the world and the players the heros in it.                                                  |
+| PNP       | pen-and-paper role-playing game - alternative for TTRPG - see the TTRPG definitoon                                                                                                                        |
+| DnD / D&D | Dungeons and Dragons - a TTRPG by Wizards of the coast. Arguably the biggest and well known system in its genere.                                                                                         |
+| GM / DM   | Game Master / Dungeon Master - is a person, the player who acts as a facilitator, arbitrator of rules and moderator for a group i.e. provides the story, the quest, displays the world the heros inhabit. |
+|           |                                                                                                                                                                                                           |
+|           |                                                                                                                                                                                                           |
+  
