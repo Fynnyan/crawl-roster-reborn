@@ -1,9 +1,102 @@
 == Functional Requirements
 
-[discrete]
-=== Guest Users
+.use cases - overview of the functionality
+[plantuml]
+----
 
-1. There are no guest users. All actions require a logged user. Actions via bot always imply a logged user else they would have no aceess to the server
+skinparam rectangle {
+
+}
+
+actor "Player" as player
+actor "Game Master" as gm
+actor "Guild Admin" as admin
+rectangle "<<system>>\n  Discord" as discord
+
+player <|-- gm
+gm <|-- admin
+
+rectangle "Crawl Roster" {
+    usecase "Log in with Discord\n(WEB)" as uc_login
+
+    usecase "Manage\n player profile" as uc_profile
+    usecase "Event & table statistics" as uc_statistics
+    ' events
+    usecase "View event lineup" as uc_view_events
+    together {
+        usecase "Create event" as uc_create_event
+        usecase "Manage event" as uc_manage_event
+        usecase "Close event" as uc_close_event
+        usecase "Delete event channel" as uc_delete_event_channel
+    }
+    usecase "Register/Join\n an event" as uc_join_event
+
+    ' tables
+    usecase "Host / Manage table" as uc_host_table
+    usecase "join / switch table" as uc_join_table
+    usecase "Quick Action\n Join beginner table" as uc_join_beginner_table
+    usecase "invite player to table" as uc_table_invite_plyer
+
+    ' bot / background
+    together {
+        usecase "Link guild to system" as uc_link_guild
+        usecase "Sync event channel\n and message" as uc_sync_events
+        usecase "Sync table thread\n and message" as uc_sync_table
+
+    }
+}
+
+player --> uc_login
+player --> uc_profile
+player --> uc_view_events
+player --> uc_join_event
+player --> uc_join_table
+
+
+gm --> uc_host_table
+gm --> uc_table_invite_plyer
+
+admin --> uc_create_event
+admin --> uc_manage_event
+admin --> uc_close_event
+admin --> uc_link_guild
+admin --> uc_statistics
+
+uc_join_beginner_table -l-> uc_join_table  : <<extends>>
+uc_delete_event_channel -l-> uc_close_event : <<extends>>
+uc_link_guild ..> discord : <<include>>\n bot added to guild
+
+uc_sync_events <..> discord : <<include>\n bot interaction
+uc_create_event .. uc_sync_events : <<include>>
+uc_manage_event .. uc_sync_events : <<include>>
+uc_close_event .. uc_sync_events : <<include>>
+uc_join_event .. uc_sync_events : <<include>>
+
+uc_sync_table <..> discord : <<include>>\n bot interaction
+uc_host_table .. uc_sync_table : <<include>>
+uc_join_table .. uc_sync_table : <<include>>
+uc_table_invite_plyer .. uc_sync_table : <<include>>
+----
+
+[discrete]
+=== App Roles
+
+|===
+|Role | Description | Features
+|Plyer | Player ist the basic role of an authorized user. | A user with this role:
+See the events, join/leave an event, join/leave a table
+|Game Master | A GM is the creator / manager / host of a table/group in an event | A user with this role:
+Can host a table in an event, organizes an manages a table, can invite players to their table
+|Admin | Admin of the (Discord) guild  | A user with this role:
+Manages the guilds and bot integration related data, can see the event statistics
+|===
+
+
+[discrete]
+==== Guest Users
+
+1. There are no guest users. All actions require a logged user.
+2. Actions via bot always imply a logged user else they would have no access to the server
 
 [discrete]
 === Login
@@ -21,16 +114,9 @@
     * spoken languages - none or multiple selections possible
     * player experience / level
 3. The profile supports the following languages:
-    * Swiss German
-    * German
-    * English
-    * French
-    * Italian
-    * Romansh
+    * Swiss German, German, English, French, Italian, Romansh
 4. The profile supports the following experience labels:
-    * Beginner
-    * Intermediate
-    * GM
+    * Beginner, Intermediate, Game Master
 
 [discrete]
 === Guild management
@@ -48,9 +134,10 @@
 3. Anyone can view a guild's calendar filtered by date range, and the details of a single event.
 4. A Event is automatically closed after the event date has passed
 
-=== Tables (DM hosting)
+[discrete]
+=== Hosting Tables
 
-1. Adminis can decide if all players can host a table or only GM marked roles
+1. Admins can decide if all players can host a table or only GM marked roles
 2. A logged-in player can host one table per event as DM, and can edit or cancel it.
 3. A table has these fields:
     * adventure title
@@ -85,37 +172,25 @@
 7. Messages are rendered from templates and limited to 2000 characters.
 8. Messages carry buttons: Sign Up, Cancel, Join Beginner Table, Join Table and Leave Table. Button clicks register or unregister the player and get an ephemeral reply.
 
+[discrete]
+=== Event Statistic
+
+Guild admins can view the statistics of the events and the tables of these.
+
+.Common Metrics
+* How many tables a GM hosted, how many tables where hosted grouped by DM.
+* how many players attended an event, how many table per event.
+* ...
+
+
 == Supporting Models
 
-ifdef::req42help[]
-[role="req42help"]
-****
-.Content
-Any kind of graphical models that facilitate the understanding (of relationships) of Backlog Items. The diagrams should be linked to items from the Product Backlog.
+=== Domain Model
 
-.Motivation
-In the agile world, it has become widespread to write requirements in the form of epics, features or user stories on little cards or to file them in equivalent form in tools.
-
-Nevertheless, communication among all stakeholders sometimes becomes much easier if you also use the tools we have come to know over the last decades to make the colloquial language more precise. So don't be afraid to use models if they help communication.
-
-Don't worry: these models don't have to be perfect. But especially with increasing complexity (loops or case distinctions), a graphical visualization of the steps of a business process promotes understanding better than many tickets in the system without recognizable sequences and dependencies.
-
-.Notations/Tools
-* Flowcharts
-* activity diagrams
-* BPMN
-* state models
-* data models
-* UI prototypes
-* mock-ups
-* wireframes
-
-Simple modeling tools like Gliffy, Diagrams.Net (formerly DrawIO), ......, or DSLs like PlantUML, Kroki, ... or UML modeling tools like Enterprise Architect, Visual Paradigm, MagicDraw are suitable for creating the models. The models should be linked to your backlog items (in both directions)
-
-// .More Information
-//
-// https://docs.req42.de/section-xxx in the online documentation
-****
-endif::req42help[]
-
-_<Diagram Title 1:>_. _<insert diagram and explanations here >_ _<optional: Link to Epics, Features or Stories>_
+[plantuml]
+----
+class Event
+class Table
+class User
+class Bot
+----
