@@ -1,4 +1,11 @@
+== Intro
+
+Documentation of the requirements of the Crawl-Roster.
+Describing Features and functionality of the application.
+
 == Goals
+
+The general goals that the app strives to achieve
 
 === Usability
 
@@ -27,3 +34,4 @@ It concerns itself with:
 
 * Discord is used to organize events, so the Discord integration is essential.
 * Users should not need to create a dedicated account for the app, so Discord is used as IDP.
+

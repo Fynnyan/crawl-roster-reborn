@@ -1,7 +1,7 @@
 // configure settings
 include::config.adoc[]
 
-= Crawl Roster requirements
+= Crawl Roster Requirements
 
 // horizontal line
 '''
