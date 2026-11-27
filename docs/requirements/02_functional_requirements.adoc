@@ -1,5 +1,8 @@
 == Functional Requirements
 
+[discrete]
+=== General overview with use cases
+
 .use cases - overview of the functionality
 [plantuml]
 ----
@@ -36,6 +39,7 @@ rectangle "Crawl Roster" {
     usecase "join / switch table" as uc_join_table
     usecase "Quick Action\n Join beginner table" as uc_join_beginner_table
     usecase "invite player to table" as uc_table_invite_plyer
+    usecase "add guest player to table" as uc_table_invite_guest_plyer
 
     ' bot / background
     together {
@@ -62,8 +66,10 @@ admin --> uc_close_event
 admin --> uc_link_guild
 admin --> uc_statistics
 
-uc_join_beginner_table -l-> uc_join_table  : <<extends>>
+uc_join_beginner_table -u-> uc_join_table  : <<extends>>
 uc_delete_event_channel -l-> uc_close_event : <<extends>>
+uc_table_invite_guest_plyer -u-> uc_table_invite_plyer : <<extends>>
+
 uc_link_guild ..> discord : <<include>>\n bot added to guild
 
 uc_sync_events <..> discord : <<include>\n bot interaction
@@ -76,6 +82,37 @@ uc_sync_table <..> discord : <<include>>\n bot interaction
 uc_host_table .. uc_sync_table : <<include>>
 uc_join_table .. uc_sync_table : <<include>>
 uc_table_invite_plyer .. uc_sync_table : <<include>>
+----
+.use cases
+|===
+|Case |Description |involved Roles
+|Log in with Discord(WEB) | |
+|Manage player profile | |
+|Event & table statistics | |
+|View event lineup | |
+|Create event | |
+|Manage event | |
+|Close event | |
+|Delete event channel | |
+|Register/Join an event | |
+|Host / Manage table | |
+|join / switch table | |
+|Quick Action Join beginner table | |
+|invite player to table | |
+|add guest player to table | |
+|Link guild to system | |
+|Sync event channel and message | |
+|Sync table thread and message | |
+|===
+
+=== Domain Model
+
+[plantuml]
+----
+class Event
+class Table
+class User
+class Bot
 ----
 
 [discrete]
@@ -183,14 +220,4 @@ Guild admins can view the statistics of the events and the tables of these.
 * ...
 
 
-== Supporting Models
 
-=== Domain Model
-
-[plantuml]
-----
-class Event
-class Table
-class User
-class Bot
-----
