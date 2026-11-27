@@ -1,3 +1,0 @@
-== Glossary
-
-include::../common/glossary.adoc[]

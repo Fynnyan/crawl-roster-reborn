@@ -8,7 +8,3 @@ Structure:
 
 * `arc42` - software architecture documentation and overview
 * `requirements` - documentation of the requirements
-* `common` - common asciidoc elements that are used by both documentations  
-
-
-## Decisions

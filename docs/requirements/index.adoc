@@ -20,6 +20,3 @@ include::03_quality-requirements.adoc[]
 
 <<<
 include::04_requirements_descisons.adoc[]
-
-<<<
-include::05_glossary.adoc[]
