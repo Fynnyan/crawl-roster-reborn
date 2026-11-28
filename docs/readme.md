@@ -8,3 +8,11 @@ Structure:
 
 * `arc42` - software architecture documentation and overview
 * `requirements` - documentation of the requirements
+
+Generate the single HTML document from the project root with:
+
+```shell
+./gradlew :docs:asciidoctorHtml
+```
+
+The result is written to `docs/build/docs/asciidoc/html/index.html`.

@@ -1,0 +1,15 @@
+// configure settings
+include::config.adoc[]
+
+= Crawl Roster
+
+:numbered:
+
+// horizontal line
+'''
+<<<
+include::requirements/index.adoc[leveloffset=+1]
+
+<<<
+include::arc42/index.adoc[leveloffset=+1]
+

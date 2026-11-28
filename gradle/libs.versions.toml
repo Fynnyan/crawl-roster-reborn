@@ -1,0 +1,8 @@
+[versions]
+asciidoctorPlugin = "5.2.0"
+
+[plugins]
+asciidoctor = { id ="org.asciidoctor.jvm", version.ref = "asciidoctorPlugin" }
+asciidoctorDiagram = { id = "org.asciidoctor.jvm.diagram", version.ref = "asciidoctorPlugin" }
+
+[libraries]
