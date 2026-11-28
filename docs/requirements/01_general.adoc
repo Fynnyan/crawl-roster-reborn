@@ -7,22 +7,83 @@ Describing Features and functionality of the application.
 
 The general goals that the app strives to achieve
 
-=== Usability
+=== Functional Suitability / Flexibility / Usability
 
-Provide a easy to use app and discord integration that doesn't need a complex tutorial for it's users
+The plattform must support the DGB (and possible other organizations) with managing and organizing the events.
+For this the plattform needs to provide the required functionality and behavior as expected from it’s users.
 
-Each action clearly describes what it does and provides transparent feedback.
+Interactions should be clear for the users, behavior and actions should be clear and understandable
+as the users have different levels of know-how regarding the plattform, the organization and to technology.
+
+The plattform should provide the users, admins and organizers a certain amount of flexibility
+as last minute changes are a common occurrence and the plattform should not hinder the process and stand in the way of events.
+
+=== Reliability
+
+The organization and the maintenance of the app is done by hobbyists.
+The current and the new app is and will be maintained by a small group of devs in their spare time.
+
+So the app should observe a low failure rate, provide a degree of fault tolerance when discord integration is not available.
+
+=== Maintainability
+
+An important secondary goal is to achieve easy to maintain application,
+that requires low developer operational oversight.
 
 == Scope
 
 The application should be a companion app that enables the organization and management of events and the groups within an event for role-playing earnings.
 
-It concerns itself with:
+.system context
+[plantuml]
+----
+left to right direction
+skinparam linetype ortho
 
-* Providing support with creating and managing events for admins / organizers
-* Providing support with creating and managing groups/tables within an event for GMs/DMs
-* Allows users to keep a simple profile that aides with the coordination of groups
+skinparam note {
+    backgroundColor none
+    borderColor none
+}
+
+actor "User / GM / Admin" as usr
+rectangle "Crawl-Roster" as cr
+rectangle "Discord" as disc
+
+note "Direct interaction with the app.\nOrganize events, groups.\nUsing non bot features." as usr_cr
+
+note "Interaction with the Discord guild\nSee events, join them, coordinate tables" as usr_disc
+
+usr -- usr_cr
+usr_cr --> cr
+usr ---- usr_disc
+usr_disc -- disc
+
+note "Data sync &\ninteraction via bot" as cr_disc_data
+note "Authenticate and\n Authorize User" as cr_disc_idp
+
+cr <-- cr_disc_data
+cr_disc_data --> disc
+
+cr -- cr_disc_idp
+cr_disc_idp --> disc
+
+----
+
+The applications concerns itself with:
+
+* Integration into Discord via bot - datasync and bot commands.
+* Providing support with creating and managing events for admins / organizers.
+* Providing support with creating and managing tables within an event for GMs/DMs.
+* Allows users to keep a simple profile that aides with the coordination of tables.
 * Allow the users to interact with the system via the bot in the discord client without needing to change the application.
+* Provide the admins statistics of events.
+* As a secondary priority, provide the functionality via WEB GUI
+
+It will not:
+
+* Manage user accounts, Discord ist the primary IDP.
+* Replicate core Discord features like a full user profile.
+* Replicate a chat - coordination of the events/tables happens in discord in the channels/threads.
 
 == Constraints
 
@@ -32,6 +93,5 @@ It concerns itself with:
 
 === Technical Constraints
 
-* Discord is used to organize events, so the Discord integration is essential.
-* Users should not need to create a dedicated account for the app, so Discord is used as IDP.
-
+* Discord is used to organize the guild, the events, so the Discord integration is essential.
+* Users must not need to create a dedicated account for the app, so Discord is used as IDP.
