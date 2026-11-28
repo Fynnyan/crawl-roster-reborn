@@ -2,39 +2,61 @@
 
 [plantuml]
 ----
+'left to right direction
 skinparam packageStyle rectangle
+skinparam note {
+    backgroundColor none
+    borderColor none
+}
 
 "User / GM / Admin" as usr
 
-package Crawl-Roster {
-    [Crawl-Roster Core] as cr_be
-    [Crawl-Roster Web] as cr_web
+package Crawl-Roster as cr {
+    [Crawl-Roster Backend] as cr_be  #LightBlue
+    [Crawl-Roster Web] as cr_web  #LightBlue
+    () "REST API" as cr_api
 }
+
 [Discord] as disc
 () "Discord IDP" as idp
 () "Discord client" as dc
 () "Discord Bot API" as api
 
+disc -l- dc
 disc -u- idp
-disc -r- dc
-disc -l- api
+disc - api
 
-usr --> cr_web : direct interaction\n with the app,\naccess to non bot features
-usr --> dc : interaction with the\n Discord guild\nsee events,\n join them,\n coordinate groups
+note "direct interaction with the app" as usr_cr_web
+usr -- usr_cr_web
+usr_cr_web -d-> cr_web
 
-cr_web --> cr_be
-cr_web --> idp : Login via Discord
+note "interaction with the Discord guild,\nsee events, join them,\ncoordinate groups" as user_dc
+usr ------ user_dc
+user_dc --> dc
 
-cr_be <--> api : Data sync\n and interaction
-cr_be --> idp : Authenticate and\n Authorize User
+cr_be -u- cr_api
+cr_web --> cr_api
+
+note "SSO - Login via Discord" as cr_web_idp
+cr_web -r- cr_web_idp
+cr_web_idp -- idp
+
+note "Authenticate and\n Authorize User" as cr_be_idp
+cr_be -- cr_be_idp
+cr_be_idp --> idp
+
+note "Data sync\nand interaction via the gateway" as cr_be_api
+cr_be <-d- cr_be_api
+cr_be_api -> api
+
 ----
 
 |===
 |Component | Description
 |Crawl-Roster Web | Website that provides a web view for the user and provides access to functionality that has no place in the context of the bot.
-|Crawl-Roster Core | Core of the system that implements the business logic, persistence and integrates with the Discord APIs
+|Crawl-Roster Backend | Core of the system that implements the business logic, persistence and integrates with the Discord APIs
 |Discord IDP | The app doesn't implement their own IDP, is connected to discord via a dedicated OIDC client.
-|Discord Bot API | The discord Bot API that is integrated by the core component. The API is used to interact with the dedicated bot and sync the date between the two systems
+|Discord Bot API | The Discord Bot API that is integrated by the core component. The API is used to interact with the dedicated bot and sync the date between the two systems. Process events via the gateway.
 |Discord Client | The web or native client of Discord.
 
 The guild has it's own Discord Server where they organize the community and the events.
